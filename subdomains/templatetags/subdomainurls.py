@@ -36,7 +36,7 @@ def url(context, view, scheme=None, subdomain=UNSET,  *args, **kwargs):
 
     if subdomain is UNSET:
         if request is not None:
-            subdomain = request.get('subdomain')
+            subdomain = getattr(request, 'subdomain', None)
         else:
             subdomain = None
     elif subdomain is '':
