@@ -32,10 +32,11 @@ def url(context, view, scheme=None, subdomain=UNSET,  *args, **kwargs):
        template rendering.
 
     """
+    request = context.get('request')
+
     if subdomain is UNSET:
-        request = context.get('request')
         if request is not None:
-            subdomain = getattr(request, 'subdomain', None)
+            subdomain = request.get('subdomain')
         else:
             subdomain = None
     elif subdomain is '':
